@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Mouse Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        // URL ของ Web App ที่คุณได้รับจาก Google Apps Script
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxikjPxg3BdnlevCvYHYemoZsRH6mU1s3verHgeKlajtsd9C0DyaEfq9fOQ_5Kj7sij/exec';
+
+        // ราคาของแต่ละขนาด
+        const prices = {
+            '3XS': '8 บาท/ตัว',
+            '2XS': '10 บาท/ตัว',
+            'XS': '12 บาท/ตัว',
+            'S': '17 บาท/ตัว',
+            'M': '22 บาท/ตัว',
+            'L': '27 บาท/ตัว',
+            'XL': '32 บาท/ตัว',
+            '2XL': '37 บาท/ตัว',
+            '3XL': '40 บาท/ตัว'
+        };
+
+        async function fetchStock() {
+            try {
+                const response = await fetch(webAppUrl);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching stock data:', error);
+                return {};
+            }
+        }
+
+        function changeImage(imageSrc, size) {
+            document.getElementById('product-image').src = imageSrc;
+
+            fetchStock().then(stock => {
+                const quantity = stock[size] || '0';
+                const price = prices[size] || '0';
+                document.getElementById('stock-info').innerText = `จำนวนคงเหลือ: ${quantity}`;
+                document.getElementById('price-info').innerText = `ราคา: ${price}`;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkShippingBtn = document.getElementById('check-shipping-btn');
+            const customerAddressInput = document.getElementById('customer-address');
+            const shippingCostResult = document.getElementById('shipping-cost-result');
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Big Mouse Farm"></a>
+            </div>
+            <ul class="nav-links">
+                    <li><a href="index.html">Mice</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <h1>หนู Mice</h1>
+        <p>เลือกไซส์หนูไมค์ที่คุณต้องการ เพื่อสัตว์เลี้ยงของคุณรัก</p>
+    </section>
+
+    <section class="product-display">
+        <div class="product-image">
+            <img id="product-image" src="Mice%20Size/3XS.jpg" alt="Product Image">
+            <div id="stock-info">จำนวนคงเหลือ</div>
+            <div id="price-info">ราคา</div>
+        </div>
+        <div class="product-options">
+            <p class="option-title">
+                <span class="size">ขนาด</span> <span class="description">ที่คุณต้องการ</span>
+            </p>
+            <div class="option-group">
+                <button class="option-btn" onclick="changeImage('Mice%20Size/3XS.jpg', '3XS')">3XS</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/2XS.jpg', '2XS')">2XS</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/XS.jpg', 'XS')">XS</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/S.jpg', 'S')">S</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/M.jpg', 'M')">M</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/L.jpg', 'L')">L</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/XL.jpg', 'XL')">XL</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/2XL.jpg', '2XL')">2XL</button>
+                <button class="option-btn" onclick="changeImage('Mice%20Size/3XL.jpg', '3XL')">3XL</button>
+            </div>
+
+            <!-- หัวข้อการจัดส่งอยู่ข้างนอกกรอบ -->
+            <h2 class="shipping-title">การจัดส่ง 2 วิธี</h2>
+
+            <!-- กรอบที่รวมการจัดส่งทั้งสองแบบ -->
+            <div class="shipping-info">
+                <div class="shipping-section">
+                    <div class="shipping-method">
+                        <p class="method-title">ส่งด่วน</p>
+                        <p class="method-detail">Grab / Line Man</p>
+                        <p class="method-note">• คิดค่าส่งตามจริง จาก APP</p>
+                        <p class="shipping-note">กรุณาแจ้งที่อยู่เพื่อเช็คราคาก่อน</p>
+                    </div>
+                </div>
+
+                <!-- เส้นแบ่งขั้นระหว่างประเภทการจัดส่ง -->
+                <hr class="divider">
+
+                <div class="shipping-section">
+                    <div class="shipping-method">
+                        <p class="method-title">ส่งควบคุมเย็น</p>
+                        <p class="method-detail">NIM Express</p>
+                        <p class="method-note">• ภาคกลางเริ่มต้น 130 บาท</p>
+                        <p class="method-note">• ภาคอื่น ๆ เริ่มต้น 160 บาท</p>
+                        <p class="shipping-note">กรุณาแจ้งที่อยู่เพื่อเช็คราคาก่อน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- เพิ่ม Footer สำหรับไอคอนการติดต่อ -->
+    <footer class="footer1">
+        <div class="contact-info">
+            <p>ติดต่อ สั่งซื้อ</p>
+            <div class="contact-icons">
+                <a href="https://www.facebook.com/profile.php?id=100089932073286" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://lin.ee/xxwJU49" target="_blank" aria-label="Line">
+                    <i class="fab fa-line"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

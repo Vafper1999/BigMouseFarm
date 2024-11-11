@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รีวิวจากทางร้าน - Big Mouse Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .cover-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        .thumbnail-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .thumbnail-container img {
+            width: 250px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .thumbnail-container img:hover {
+            transform: scale(1.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 5% auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Big Mouse Farm"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Mice</a></li>
+                <li><a href="review.html">Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ภาพปก -->
+    <div class="image-container">
+    <img src="cover/cover.jpg" alt="Cover Image" class="cover-image">
+    </div>
+
+    <!-- แสดงภาพทั้งหมดในหน้าเดียว -->
+    <section class="reviews-section">
+        <h2>รีวิวจากทางร้าน</h2>
+        <div class="thumbnail-container">
+            <img src="review/review1.jpg" alt="Review 1" onclick="openModal(this.src)">
+            <img src="review/review2.jpg" alt="Review 2" onclick="openModal(this.src)">
+            <img src="review/review3.jpg" alt="Review 3" onclick="openModal(this.src)">
+            <img src="review/review4.jpg" alt="Review 4" onclick="openModal(this.src)">
+            <img src="review/review5.jpg" alt="Review 5" onclick="openModal(this.src)">
+            <img src="review/review6.jpg" alt="Review 6" onclick="openModal(this.src)">
+            <!-- เพิ่มภาพตามต้องการ -->
+        </div>
+        
+    </section>
+      <section class="Other-Pictures">
+        <h2>ภาพเพิ่มเติม</h2>
+        <div class="thumbnail-container">
+            <img src="OtherPic/P1.JPG" alt="OtherPic 1" onclick="openModal(this.src)">
+            <img src="OtherPic/P2.JPG" alt="OtherPic 2" onclick="openModal(this.src)">
+            <img src="OtherPic/P3.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P4.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P5.jpg" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P6.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P7.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P8.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P9.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <img src="OtherPic/P10.JPG" alt="OtherPic 3" onclick="openModal(this.src)">
+            <!-- เพิ่มภาพตามต้องการ -->
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById("myModal").style.display = "block";
+            document.getElementById("img01").src = src;
+        }
+        
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+    
+    <footer class="footer2">
+        <div class="contact-info">
+            <p>ติดต่อ สั่งซื้อ</p>
+            <div class="contact-icons">
+                <a href="https://www.facebook.com/profile.php?id=100089932073286" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://lin.ee/xxwJU49" target="_blank" aria-label="Line">
+                    <i class="fab fa-line"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>
